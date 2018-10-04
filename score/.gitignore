@@ -1,0 +1,5 @@
+# Not to save scores
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
