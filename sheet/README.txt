@@ -7,17 +7,15 @@ Notes will be presented as,
 
 <Tone>
 c3 : do. octave 3. 
-c3s : do sharp. octave3.
-e3f : do flat. octave3. equal to d3s.
+cs3 : do sharp. octave3.
+ef3 : mi flat. octave3. equal to ds3.
 rest : No sound.
 
-!!! FOR NOW, NO FLAT !!!
-!!! FOR NOW, NO HALF TONE !!!
-
 After parsing, there will be no flat tones.
-And also, it will consider semitone.
-e3s will be f3.
-c3f will be b2. b2s will be c3.
+ef3 will be ds3.
+And also, it will consider semitone(half tone).
+es3 will be f3.
+cf3 will be b2. bs2 will be c3.
 
 <Beat>
 Beat is integer, which goes up 1, 2, 4, 8, and so on.
