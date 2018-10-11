@@ -16,7 +16,7 @@ class Parser:
         self.possible_tones = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
         self.merge = False
 
-    # Check if tone 
+    # Check if tone
     def tone_checker(self, tone, i):
         return tone
 
@@ -34,9 +34,9 @@ class Parser:
         print('ms ' + str(ms))
         print('rounded ms ' + str(int(round(ms))))
         return int(round(ms))
-    
+
     def parse(self):
-        
+
         # Read sheet file
         sheet = open(self.sheet_loc, 'r')
         notes = sheet.readlines()
@@ -49,7 +49,7 @@ class Parser:
             raise SheetParserError('No START token.','Sheet should be placed between START and END')
         else:
             notes = notes[start_index+1:]
-        
+
         try:
             end_index = notes.index('END\n')
         except:
@@ -66,7 +66,7 @@ class Parser:
             raise SheetParserError('Too big bpm', 'bpm should be less or equal than 180.')
         if bpm < 40 :
             raise SheetParserError('Too small bpm', 'bpm should be greater or equal than 40')
-        
+
         # Set freq
         self.freq = bpm/60.0
 
@@ -106,9 +106,7 @@ class Parser:
             else:
                 beat_ms = self.beat_checker(beat, bpm, i)
                 tone = self.tone_checker(tone, i)
-                converted_notes.append((tone, beat_ms))        
-        
+                converted_notes.append((tone, beat_ms))
+
         # Return
         return Sheet(bpm, converted_notes)
-        
-        

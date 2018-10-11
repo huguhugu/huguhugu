@@ -2,6 +2,7 @@ import sys
 
 from parser import Parser, SheetParserError
 from sheet import Sheet
+from maker import Maker
 
 import argparse
 parser = argparse.ArgumentParser(description='Huguhugu')
@@ -42,8 +43,9 @@ def main():
     print()
 
     print('4. Generate music video.')
+    #music = Maker(sheet)
+    #music.make()
     print()
 
 if __name__ == "__main__":
     main()
- 
