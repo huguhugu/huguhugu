@@ -40,7 +40,7 @@ class Parser:
         }
         self.min_octave = 1
         self.max_octave = 5
-        self.merge = False
+        
 
     # Check whether tone is valid, return procesed tone.
     # tone : c3, cf3, ... (string)
@@ -86,38 +86,83 @@ class Parser:
                 i), 'Note beat can only be 1, 2, 4, ... , 64.')
         else:
             times = 2 ** (2 - index)
-            print('times '+str(times))
+            # print('times '+str(times))
         ms = 1000.0/self.freq * times
-        print('ms ' + str(ms))
-        print('rounded ms ' + str(int(round(ms))))
+        # print('ms ' + str(ms))
+        # print('rounded ms ' + str(int(round(ms))))
         return int(round(ms))
+
+    # Parse each line
+    # line : list of note
+    # i : Number of LINE
+    def parse_line(self, line, i, bpm):
+        converted_notes = []
+        merge = False
+        for i, note in enumerate(line):
+            # Parse note
+            p = parse('({}, {:d})', note)
+            if p is None:
+                raise SheetParserError('LINE {} : {}'.format(
+                    i, note), 'Note format error.')
+
+            # tone, beat check
+            tone, beat = p
+
+            # If note need to be merged with previous note,
+            if merge:
+                tone = self.tone_checker(tone, i)
+                prev_tone = converted_notes[-1][0]
+                if tone != prev_tone:
+                    raise SheetParserError('LINE {} : {}'.format(
+                        i, note), 'Different tones can\'t be merged.')
+                beat_ms = self.beat_checker(beat, bpm, i)
+                prev_note = converted_notes[-1]
+                converted_notes[-1] = (prev_note[0], prev_note[1] + beat_ms)
+                merge = False
+
+            # If note is 'rest' note,
+            elif tone == 'rest':
+                beat_ms = self.beat_checker(beat, bpm, i)
+                converted_notes.append((tone, beat_ms))
+
+            # If note is merge, set merge flag & continue
+            elif tone == 'merge':
+                merge = True
+                continue
+
+            # O.w.
+            else:
+                beat_ms = self.beat_checker(beat, bpm, i)
+                tone = self.tone_checker(tone, i)
+                converted_notes.append((tone, beat_ms))
+        return converted_notes
 
     def parse(self):
 
         # Read sheet file
         sheet = open(self.sheet_loc, 'r')
-        notes = sheet.readlines()
+        read_lines = sheet.readlines()
         sheet.close()
 
-        # Find notes between START and END
+        # Find sheet START and END
         try:
-            start_index = notes.index('START\n')
+            start_index = read_lines.index('START\n')
         except:
             raise SheetParserError(
                 'No START token.', 'Sheet should be placed between START and END')
         else:
-            notes = notes[start_index+1:]
+            read_lines = read_lines[start_index+1:]
 
         try:
-            end_index = notes.index('END\n')
+            end_index = read_lines.index('END\n')
         except:
             raise SheetParserError(
                 'No END token.', 'Sheet should be placed between START and END')
         else:
-            notes = notes[:end_index]
-
+            read_lines = read_lines[:end_index]
+        
         # Check bpm
-        bpm_parse = parse('bpm: {:d}', notes[0])
+        bpm_parse = parse('bpm: {:d}', read_lines[0])
         if bpm_parse is None:
             raise SheetParserError(
                 'No bpm.', 'bpm should be specified after START. ex) bpm: 120')
@@ -128,49 +173,40 @@ class Parser:
         if bpm < 40:
             raise SheetParserError(
                 'Too small bpm', 'bpm should be greater or equal than 40')
+        read_lines = read_lines[1:]
 
         # Set freq
         self.freq = bpm/60.0
 
-        # Convert notes
-        converted_notes = []
-        for i, note in enumerate(notes[1:]):
-            # Parse note
-            p = parse('({}, {:d})', note)
-            if p is None:
-                raise SheetParserError('Line {} : {}'.format(
-                    i, note), 'Note format error.')
-
-            # tone, beat check
-            tone, beat = p
-
-            # If note need to be merged with previous note,
-            if self.merge:
-                tone = self.tone_checker(tone, i)
-                prev_tone = converted_notes[-1][0]
-                if tone != prev_tone:
-                    raise SheetParserError('Line {} : {}'.format(
-                        i, note), 'Different tones can\'t be merged.')
-                beat_ms = self.beat_checker(beat, bpm, i)
-                prev_note = converted_notes[-1]
-                converted_notes[-1] = (prev_note[0], prev_note[1] + beat_ms)
-                self.merge = False
-
-            # If note is 'rest' note,
-            elif tone == 'rest':
-                beat_ms = self.beat_checker(beat, bpm, i)
-                converted_notes.append((tone, beat_ms))
-
-            # If note is merge, set merge flag & continue
-            elif tone == 'merge':
-                self.merge = True
-                continue
-
-            # O.w.
+        # Find lines START and END
+        lines = [] # Found lines
+        line = [] # List to store notes
+        line_started = False
+        for i, token in enumerate(read_lines):
+            if (not line_started) and (token == 'LINESTART\n'):
+                line_started = True
+                line = []
+            elif line_started and token == 'LINEEND\n':
+                if not len(line) > 0:
+                    raise SheetParserError('Line {}'.format(i), 'Line should consist of at least one note.')
+                else:
+                    line_started = False
+                    lines.append(line)
             else:
-                beat_ms = self.beat_checker(beat, bpm, i)
-                tone = self.tone_checker(tone, i)
-                converted_notes.append((tone, beat_ms))
+                p = parse('({}, {:d})', token)
+                if p is None:
+                    raise SheetParserError('Line {} : {}'.format(
+                        i, token), 'Note format error.')
+                line.append(token)
+        if line_started:
+            raise SheetParserError('Line error', 'Line not finished after LINESTART')
+        if not len(lines) > 0:
+            raise SheetParserError('Line error', 'At least one line should exist.')
+        
+        # Convert lines
+        converted_lines = []
+        for i, line in enumerate(lines):
+            converted_lines.append(self.parse_line(line, i+1, bpm))
 
         # Return
-        return Sheet(bpm, converted_notes)
+        return Sheet(bpm, converted_lines)

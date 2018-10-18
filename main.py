@@ -2,7 +2,7 @@ import sys
 
 from sheet_parser import Parser, SheetParserError
 from sheet import Sheet
-from maker import Maker
+# from maker import Maker
 
 import argparse
 parser = argparse.ArgumentParser(description='Huguhugu')
@@ -19,6 +19,9 @@ def main():
         print('1. Read text sheet')
         print('Path : '+args.text)
         sheet_parser = Parser(args.text)
+    else :
+        print('Needs input')
+        exit(1)
     print()
 
 

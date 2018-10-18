@@ -28,10 +28,20 @@ Beat is integer, which goes up 1, 2, 4, 8, and so on.
 If (merge, 0) command is between two notes,
 series of same tone will be merged.
 
+<LINE>
+For harmony or background beat,
+there can be line.
+Each line will be preocessed individually.
+
+<Sheet>
+Sheet will consist of bpm, lines.
+'lines' is a list of lines
+where every line is list of notes.
 
 <Example - butterfly>
 START
 bpm: 126
+LINESTART
 (g3, 4)
 (e3, 4)
 (e3, 4)
@@ -50,6 +60,25 @@ bpm: 126
 (merge, 0)
 (g3, 16)
 (rest, 4)
+LINEEND
+LINESTART
+(e3, 4)
+(c3, 4)
+(c3, 4)
+(rest, 4)
+(f3, 4)
+(d3, 4)
+(d3, 4)
+(rest, 4)
+(e3, 4)
+(f3, 4)
+(g3, 4)
+(a3, 4)
+(b3, 4)
+(b3, 4)
+(b3, 4)
+(merge, 0)
+LINEEND
 END
 
 <Result - Parser object>
