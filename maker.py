@@ -20,7 +20,7 @@ class Maker(object):
 
     def make(self):
         videos = []
-        for notes in hard_sheet:
+        for notes in self.sheet.lines:
             clips = []
             for note in notes:
                 if note[0] == 'rest':
