@@ -60,16 +60,22 @@ LINESTART
 (rest, 4)
 LINEEND
 LINESTART
+(e3, 4)
 (c3, 4)
+(c3, 4)
+(rest, 4)
+(f3, 4)
 (d3, 4)
+(d3, 4)
+(rest, 4)
 (e3, 4)
 (f3, 4)
 (g3, 4)
-(g3, 4)
-(g3, 8)
+(a3, 4)
+(b3, 4)
+(b3, 4)
+(b3, 4)
 (merge, 0)
-(g3, 16)
-(rest, 4)
 LINEEND
 END
 

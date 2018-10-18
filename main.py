@@ -1,6 +1,6 @@
 import sys
 
-from parser import Parser, SheetParserError
+from sheet_parser import Parser, SheetParserError
 from sheet import Sheet
 # from maker import Maker
 
