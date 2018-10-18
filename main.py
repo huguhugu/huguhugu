@@ -1,6 +1,6 @@
 import sys
 
-from parser import Parser, SheetParserError
+from sheet_parser import Parser, SheetParserError
 from sheet import Sheet
 from maker import Maker
 
@@ -43,8 +43,8 @@ def main():
     print()
 
     print('4. Generate music video.')
-    #music = Maker(sheet)
-    #music.make()
+    music = Maker(sheet)
+    music.make()
     print()
 
 if __name__ == "__main__":
