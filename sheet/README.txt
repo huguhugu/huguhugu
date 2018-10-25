@@ -19,6 +19,10 @@ And also, it will consider semitone.
 e3s will be f3.
 c3f will be b2. b2s will be c3.
 
+Tone also can be arbitrary name,
+if that tone has been registered already.
+The name should be longer than 4.
+
 <Beat>
 Beat is integer, which goes up 1, 2, 4, 8, and so on.
 '1' indicates whole note.
@@ -41,6 +45,76 @@ where every line is list of notes.
 <Example - butterfly>
 START
 bpm: 126
+LINESTART
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+(chak, 8)
+LINEEND
+LINESTART
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+(boom, 4)
+(rest, 4)
+LINEEND
+LINESTART
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+(rest, 4)
+(bamm, 4)
+LINEEND
 LINESTART
 (g3, 4)
 (e3, 4)
@@ -83,6 +157,77 @@ END
 
 <Result - Parser object>
 bpm : 126
+Line 1 start
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+('chak', 238)
+Line 1 end
+Line 2 start
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+('boom', 476)
+('rest', 476)
+Line 2 end
+Line 3 start
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+('rest', 476)
+('bamm', 476)
+Line 3 end
+Line 4 start
 ('g3', 476)
 ('e3', 476)
 ('e3', 476)
@@ -99,3 +244,21 @@ bpm : 126
 ('g3', 476)
 ('g3', 357)
 ('rest', 476)
+Line 4 end
+Line 5 start
+('e3', 476)
+('c3', 476)
+('c3', 476)
+('rest', 476)
+('f3', 476)
+('d3', 476)
+('d3', 476)
+('rest', 476)
+('e3', 476)
+('f3', 476)
+('g3', 476)
+('a3', 476)
+('b3', 476)
+('b3', 476)
+('b3', 476)
+Line 5 end

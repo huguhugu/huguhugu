@@ -63,6 +63,8 @@ class Parser:
                 elif tone == 'cf':
                     octave -= 1
                 tone = self.possible_tones[tone]
+            elif len(tone) >= 4:
+                return tone
             else:
                 raise SheetParserError(
                     'Line {} : {}'.format(i, tone), 'The tone is not valid.')
