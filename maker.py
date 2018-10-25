@@ -1,4 +1,4 @@
-from moviepy.editor import concatenate_videoclips, VideoFileClip, clips_array, ImageClip
+from moviepy.editor import concatenate_videoclips, VideoFileClip, clips_array, ImageClip, ColorClip, AudioFileClip
 from pydub import AudioSegment
 from sheet import Sheet
 import os
@@ -24,8 +24,9 @@ class Maker(object):
             clips = []
             for note in notes:
                 if note[0] == 'rest':
-                    t = clips[-1].end
-                    img = ImageClip(clips[-1].get_frame(t), duration=note[1]/1000)
+                    #t = clips[-1].end
+                    #img = ImageClip(clips[-1].get_frame(t), duration=note[1]/1000)
+                    img = ColorClip((1920, 1080), (0, 0, 0), duration=note[1]/1000)
                     clips.append(img)
                 for root, dir, files in os.walk('./note'):
                     for file in files:
@@ -40,22 +41,28 @@ class Maker(object):
         result.write_videofile(self.result)
 
 
-    def clip(self, path, duration):
+    def clip(self, path, duration, rest=False):
         if duration <= 0:
             print("Maker : Duration is shorter than 0")
+            print('Maker :'+path)
+            print('Maker :'+duration)
             return
 
         sample_array = AudioSegment.from_file(path).get_array_of_samples()
+        sample_array = AudioFileClip(path).to_soundarray()
+        sample_array = sample_array[:,0].tolist()
         loudest_index = sample_array.index(max(sample_array))
         start_index = loudest_index
         end_index = len(sample_array)
-        duration_index = int(duration*100)
+        duration_index = int(duration*44.1) # 44.1 per 1ms
         # Cut Duration
         if (end_index-loudest_index) < duration_index:
             print("Maker : Note is shorter than Duration")
+            print('Maker :'+path)
+            print('Maker :'+duration)
         else:
             start_index = loudest_index #- 10*100
             end_index = loudest_index + duration_index #- 10*100
 
-        output = VideoFileClip(path).subclip(start_index*0.00001, end_index*0.00001)
+        output = VideoFileClip(path).subclip(start_index/44100, end_index/44100)
         return output

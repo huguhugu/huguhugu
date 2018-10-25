@@ -11,7 +11,9 @@ class Register(object):
             print("Register : " + path + " is existed")
             _, ext = os.path.splitext(path)
             self.path = './note/'+note+ext
-            shutil.copyfile(path, self.path)
+            sample = VideoFileClip(path)
+            sample.resize((720,480))
+            sample.write_videofile(self.path)
         else:
             print("Register : Wrong path")
 
