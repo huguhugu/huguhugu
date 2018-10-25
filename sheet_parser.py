@@ -185,6 +185,9 @@ class Parser:
         line = [] # List to store notes
         line_started = False
         for i, token in enumerate(read_lines):
+            # If comment, pass
+            if token.startswith('#'):
+                continue
             if (not line_started) and (token == 'LINESTART\n'):
                 line_started = True
                 line = []

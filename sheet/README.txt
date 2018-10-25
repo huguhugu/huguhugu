@@ -23,6 +23,9 @@ Tone also can be arbitrary name,
 if that tone has been registered already.
 The name should be longer than 4.
 
+For comment,
+add # in front of token.
+
 <Beat>
 Beat is integer, which goes up 1, 2, 4, 8, and so on.
 '1' indicates whole note.
