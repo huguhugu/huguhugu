@@ -40,6 +40,7 @@ class Parser:
         }
         self.min_octave = 1
         self.max_octave = 5
+        self.DEFAULT_VOLUME = 5
         
 
     # Check whether tone is valid, return procesed tone.
@@ -102,13 +103,17 @@ class Parser:
         merge = False
         for i, note in enumerate(line):
             # Parse note
-            p = parse('({}, {:d})', note)
+            p = parse('({}, {:d}, {:d})', note)
             if p is None:
-                raise SheetParserError('LINE {} : {}'.format(
-                    i, note), 'Note format error.')
-
-            # tone, beat check
-            tone, beat = p
+                p = parse('({}, {:d})', note)
+                if p is None:
+                    raise SheetParserError('LINE {} : {}'.format(
+                        i, note), 'Note format error.')
+                else:
+                    tone, beat = p
+                    volume = self.DEFAULT_VOLUME
+            else:
+                tone, beat, volume = p
 
             # If note need to be merged with previous note,
             if merge:
@@ -119,24 +124,31 @@ class Parser:
                         i, note), 'Different tones can\'t be merged.')
                 beat_ms = self.beat_checker(beat, bpm, i)
                 prev_note = converted_notes[-1]
-                converted_notes[-1] = (prev_note[0], prev_note[1] + beat_ms)
+                converted_notes[-1] = (prev_note[0], prev_note[1] + beat_ms, prev_note[2])
                 merge = False
 
             # If note is 'rest' note,
             elif tone == 'rest':
                 beat_ms = self.beat_checker(beat, bpm, i)
-                converted_notes.append((tone, beat_ms))
+                converted_notes.append((tone, beat_ms, volume))
 
             # If note is merge, set merge flag & continue
-            elif tone == 'merge':
+            elif tone == 'MERGE':
                 merge = True
                 continue
+            
+            elif tone == 'ITER':
+                notesnum, iternum = beat, volume
+                iter_notes = converted_notes[-notesnum:]
+                for i in range(iternum-1):
+                    iter_notes.extend(iter_notes[0:notesnum])
+                converted_notes = converted_notes[:-notesnum] + iter_notes
 
             # O.w.
             else:
                 beat_ms = self.beat_checker(beat, bpm, i)
                 tone = self.tone_checker(tone, i)
-                converted_notes.append((tone, beat_ms))
+                converted_notes.append((tone, beat_ms, volume))
         return converted_notes
 
     def parse(self):
