@@ -1,5 +1,5 @@
 from moviepy.editor import *
-from pydub import AudioSegment
+from moviepy.audio.fx.volumex import volumex
 import os.path
 import shutil
 
@@ -10,9 +10,16 @@ class Register(object):
         if os.path.isfile(path):
             print("Register : " + path + " is existed")
             _, ext = os.path.splitext(path)
-            self.path = './note/'+note+ext
+            self.path = './note/'+note+'.mp4'
             sample = VideoFileClip(path)
             sample.resize((720,480))
+
+            volume = 0.5
+            audio = AudioFileClip(path)
+            audio_array = audio.to_soundarray()
+            scale = volume / max(audio_array[:, 0])
+            audio = audio.fx(volumex, scale)
+            sample = sample.set_audio(audio)
             sample.write_videofile(self.path)
         else:
             print("Register : Wrong path")
