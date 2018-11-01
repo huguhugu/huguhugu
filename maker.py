@@ -1,7 +1,7 @@
 from moviepy.editor import concatenate_videoclips, VideoFileClip, clips_array, ImageClip, ColorClip, AudioFileClip
-from pydub import AudioSegment
 from sheet import Sheet
 import os
+from moviepy.audio.fx.volumex import volumex
 
 hard_sheet = [
   [('g3', 476),('e3', 476),('e3', 476),('rest', 476),('f3', 476),('d3', 476),('d3', 476),('rest', 476),('c3', 476),('d3', 476),('e3', 476),('f3', 476),('g3', 476),('g3', 476),('g3', 357),('rest', 476)],
@@ -32,7 +32,7 @@ class Maker(object):
                     for file in files:
                         filename, ext = os.path.splitext(file)
                         if note[0] == filename:
-                            clipped = self.clip('./note/'+file, note[1])
+                            clipped = self.clip('./note/'+file, note[1], note[2])
                             clips.append(clipped)
             video = concatenate_videoclips(clips)
             videos.append([video])
@@ -41,14 +41,13 @@ class Maker(object):
         result.write_videofile(self.result)
 
 
-    def clip(self, path, duration, rest=False):
+    def clip(self, path, duration, volume=5, rest=False):
         if duration <= 0:
             print("Maker : Duration is shorter than 0")
             print('Maker :'+path)
             print('Maker :'+duration)
             return
 
-        sample_array = AudioSegment.from_file(path).get_array_of_samples()
         sample_array = AudioFileClip(path).to_soundarray()
         sample_array = sample_array[:,0].tolist()
         loudest_index = sample_array.index(max(sample_array))
@@ -65,4 +64,8 @@ class Maker(object):
             end_index = loudest_index + duration_index #- 10*100
 
         output = VideoFileClip(path).subclip(start_index/44100, end_index/44100)
+        volume / 5 # 5 is default
+        audio = output.audio
+        audio = audio.fx(volumex, volume)
+        output = output.set_audio(audio)
         return output
