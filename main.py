@@ -8,6 +8,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Huguhugu')
 parser.add_argument("-i", "--image", help = "Using image sheet", required =False, default = "")
 parser.add_argument("-t", "--text", help = "Using text sheet", required=False, default="")
+parser.add_argument("-o", "--output", help="Output file name without file format", required=False, default="result")
 args = parser.parse_args()
 
 def main():
@@ -46,7 +47,7 @@ def main():
     print()
 
     print('4. Generate music video.')
-    music = Maker(sheet)
+    music = Maker(sheet, args.output)
     music.make()
     print()
 

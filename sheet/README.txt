@@ -1,4 +1,4 @@
-Parser will parse between 'START' and 'END' token.
+Parser will parse between 'START' and 'END' token.(Should add newline after END token)
 Sheet should start with 'bpm:' info.
 Parser will automatically calculate one note's duration time based on bpm.
 

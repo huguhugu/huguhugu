@@ -38,7 +38,7 @@ class Maker(object):
             video = concatenate_videoclips(clips)
             videos.append([video])
         result = clips_array(videos)
-        self.result = './result/'+this.name+'.mp4'
+        self.result = './result/'+self.name+'.mp4'
         result.write_videofile(self.result)
 
 
