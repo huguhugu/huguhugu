@@ -14,9 +14,10 @@ class MakerError(Exception):
         self.message = message
 
 class Maker(object):
-    def __init__(self, sht, *args, **kwargs):
+    def __init__(self, sht, name='result', *args, **kwargs):
         self.sheet = sht
         self.result = ''
+        self.name = name
 
     def make(self):
         videos = []
@@ -37,7 +38,7 @@ class Maker(object):
             video = concatenate_videoclips(clips)
             videos.append([video])
         result = clips_array(videos)
-        self.result = './result/'+'result.mp4'
+        self.result = './result/'+this.name+'.mp4'
         result.write_videofile(self.result)
 
 
