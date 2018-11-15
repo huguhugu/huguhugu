@@ -101,7 +101,31 @@ class Parser:
     def parse_line(self, line, i, bpm):
         converted_notes = []
         merge = False
+        current_bar_length = 0
+        bar_start = False
         for i, note in enumerate(line):
+            if note == 'BARSTART\n':
+                current_bar_length = 0
+                if bar_start:
+                    raise SheetParserError('LINE {} : {}'.format(
+                        i, note), 'Bar error.')
+                bar_start = True
+                continue
+            if note == 'BAREND\n':
+                if not bar_start:
+                    raise SheetParserError('LINE {} : {}'.format(
+                        i, note), 'Bar error.')
+                bar_start = False
+                left_length = self.length_of_bar - current_bar_length
+                if left_length > 0:
+                    converted_notes.append(('rest', left_length, 5))
+                    continue
+                elif left_length == 0:
+                    continue
+                else:
+                    raise SheetParserError('LINE {} : {}'.format(
+                        i, note), 'Bar length exceeds. {:d} < {:d}'.format(self.length_of_bar, current_bar_length))
+
             # Parse note
             p = parse('({}, {:d}, {:d})', note)
             if p is None:
@@ -126,11 +150,13 @@ class Parser:
                 prev_note = converted_notes[-1]
                 converted_notes[-1] = (prev_note[0], prev_note[1] + beat_ms, prev_note[2])
                 merge = False
+                current_bar_length += beat_ms
 
             # If note is 'rest' note,
             elif tone == 'rest':
                 beat_ms = self.beat_checker(beat, bpm, i)
                 converted_notes.append((tone, beat_ms, volume))
+                current_bar_length += beat_ms
 
             # If note is merge, set merge flag & continue
             elif tone == 'MERGE':
@@ -149,6 +175,8 @@ class Parser:
                 beat_ms = self.beat_checker(beat, bpm, i)
                 tone = self.tone_checker(tone, i)
                 converted_notes.append((tone, beat_ms, volume))
+                current_bar_length += beat_ms
+
         return converted_notes
 
     def parse(self):
@@ -187,10 +215,22 @@ class Parser:
         if bpm < 40:
             raise SheetParserError(
                 'Too small bpm', 'bpm should be greater or equal than 40')
-        read_lines = read_lines[1:]
-
+        
         # Set freq
         self.freq = bpm/60.0
+
+        # Check bar length
+        bar_parse = parse('bar: {:d}/{:d}', read_lines[1])
+        if bar_parse is None:
+            raise SheetParserError(
+                'No bar.', 'bar should be specified after bpm. ex) bar: 4/4')
+        # Calculate bar length
+        base_beat = bar_parse[1]
+        num_of_beat = bar_parse[0]
+        self.length_of_bar = self.beat_checker(base_beat, bpm, 0) * num_of_beat
+        
+        # Exclude bpm and bar
+        read_lines = read_lines[2:]
 
         # Find lines START and END
         lines = [] # Found lines
@@ -209,6 +249,8 @@ class Parser:
                 else:
                     line_started = False
                     lines.append(line)
+            elif token == 'BARSTART\n' or token == 'BAREND\n':
+                line.append(token)
             else:
                 p = parse('({}, {:d})', token)
                 if p is None:
