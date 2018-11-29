@@ -166,9 +166,14 @@ class Parser:
             elif tone == 'ITER':
                 notesnum, iternum = beat, volume
                 iter_notes = converted_notes[-notesnum:]
+                # Calculate iterlen
+                iterlen = 0
+                for note in iter_notes:
+                    iterlen += note[1]
                 for i in range(iternum-1):
                     iter_notes.extend(iter_notes[0:notesnum])
                 converted_notes = converted_notes[:-notesnum] + iter_notes
+                current_bar_length += iterlen * (iternum -1)
 
             # O.w.
             else:

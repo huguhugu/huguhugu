@@ -9,7 +9,7 @@ class Register(object):
         self.path = None
         self.register(path)
 
-    def register(self, path):
+    def register(self, path, padding=True):
         if os.path.isfile(path):
             print("Register : " + path + " is existed")
             _, ext = os.path.splitext(path)
@@ -23,6 +23,9 @@ class Register(object):
             audio_array = audio_array[:, 0].tolist()
             max_sound = max(audio_array)
             loudest_index = audio_array.index(max_sound)
+            if padding:
+                padding_msec = 50.0
+                # loudest_index -= padding_msec / 1000.0 * 44100
             scale = volume / max_sound
             audio = audio.fx(volumex, scale)
 

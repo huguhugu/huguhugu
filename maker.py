@@ -1,4 +1,4 @@
-from moviepy.editor import concatenate_videoclips, VideoFileClip, clips_array, ImageClip, ColorClip, AudioFileClip
+from moviepy.editor import concatenate_videoclips, VideoFileClip, clips_array, ImageClip, ColorClip, AudioFileClip, CompositeAudioClip
 from sheet import Sheet
 import os
 from moviepy.audio.fx.volumex import volumex
@@ -21,6 +21,7 @@ class Maker(object):
         self.name = name
         self.loaded_videos = {} # key : notename
         self.clipped_videos = {} # key : (notename, duration, volume)
+        self.magic = 2.0
 
     # video - VideoFileClip instance
     # duration - ms ex) 333ms
@@ -98,8 +99,11 @@ class Maker(object):
 
     def make(self):
         videos = []
+        # audios = []
         for notes in self.sheet.lines:
             clips = []
+            # audio = []
+            # audio_index = 0.0
             for note in notes:
                 if note[0] == 'rest':
                     #t = clips[-1].end
@@ -108,13 +112,23 @@ class Maker(object):
                     clips.append(img)
                     continue
                 target_video = self.get_video(note[0], note[1], note[2])
-                # clipped_target_video = self.clip(target_video, note[1]. note[2])
+                # target_audio = target_video.audio.copy()
+                # duration = note[1]/1000.0
+                # audio.append(target_audio.subclip(0, duration + self.magic).set_start(audio_index))
+                # audio_index += duration
                 clips.append(target_video)
-                
-            video = concatenate_videoclips(clips)
-            videos.append([video])
             
+            video = concatenate_videoclips(clips)
+            # audio = CompositeAudioClip(audio)
+            # audio = audio.subclip(0, audio_index)
+            # audio.write_audiofile('interaudio.mp3', fps=44100)
+            # audios.append(audio)
+            # video.set_audio(audio)
+            videos.append([video])
         result = clips_array(videos)
+        # result_audio = CompositeAudioClip(audios)
+        # audio.write_audiofile('resultaudio.mp3', fps=44100)
+        # result.set_audio(result_audio)
         self.result = './result/'+self.name+'.mp4'
         result.write_videofile(self.result)
 
