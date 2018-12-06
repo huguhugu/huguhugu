@@ -1,6 +1,6 @@
 # Not to save sheet
 # Ignore everything in this directory
-*
+# *
 # Except this file
-!.gitignore
-!README.txt
+# !.gitignore
+# !README.txt

@@ -1,0 +1,11 @@
+trailing test
+START
+bpm: 120
+bar: 8/4
+LINESTART
+BARSTART
+(ahah, 2, 9)
+(a2, 4, 1)
+BAREND
+LINEEND
+END

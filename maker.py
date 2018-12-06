@@ -99,36 +99,31 @@ class Maker(object):
 
     def make(self):
         videos = []
-        # audios = []
         for notes in self.sheet.lines:
             clips = []
-            # audio = []
-            # audio_index = 0.0
             for note in notes:
                 if note[0] == 'rest':
-                    #t = clips[-1].end
-                    #img = ImageClip(clips[-1].get_frame(t), duration=note[1]/1000)
-                    img = ColorClip((1920, 1080), (0, 0, 0), duration=note[1]/1000)
+                    img = ColorClip((720, 404), (0, 0, 0), duration=note[1]/1000)
                     clips.append(img)
                     continue
                 target_video = self.get_video(note[0], note[1], note[2])
-                # target_audio = target_video.audio.copy()
-                # duration = note[1]/1000.0
-                # audio.append(target_audio.subclip(0, duration + self.magic).set_start(audio_index))
-                # audio_index += duration
                 clips.append(target_video)
             
-            video = concatenate_videoclips(clips)
-            # audio = CompositeAudioClip(audio)
-            # audio = audio.subclip(0, audio_index)
-            # audio.write_audiofile('interaudio.mp3', fps=44100)
-            # audios.append(audio)
-            # video.set_audio(audio)
-            videos.append([video])
-        result = clips_array(videos)
-        # result_audio = CompositeAudioClip(audios)
-        # audio.write_audiofile('resultaudio.mp3', fps=44100)
-        # result.set_audio(result_audio)
+            video = concatenate_videoclips(clips).margin(10)
+            videos.append(video)
+        num_of_lines = len(self.sheet.lines)
+        if num_of_lines == 1:
+            result = videos[0]
+        elif num_of_lines == 2:
+            result = clips_array([[videos[0]],
+                             [videos[1]]])
+        elif num_of_lines == 4:
+            result = clips_array([[videos[0], videos[1]],
+                             [videos[2], videos[3]]])
+        else:
+            print("Num of lines should be 1, 2, or 4")
+            exit(1)
+
         self.result = './result/'+self.name+'.mp4'
         result.write_videofile(self.result)
 

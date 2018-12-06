@@ -1,0 +1,167 @@
+START
+bpm: 100
+bar: 4/4
+LINESTART
+######## phase 1
+(g2, 8)
+(ITER, 1, 12)
+(fs2, 8)
+(ITER, 1, 4)
+######## phase 2
+(g2, 8)
+(ITER, 1, 4)
+(f2, 8)
+(ITER, 1, 4)
+(e2, 8)
+(ITER, 1, 4)
+(ds2, 8)
+(ITER, 1, 4)
+(ITER, 16, 2)
+######## phase 3
+(ITER, 16, 2)
+######## phase 4
+(ITER, 16, 2)
+######## phase 5
+(ITER, 16, 2)
+######## phase 6 line 2 solo go up 1/16 x 16
+(rest, 1)
+######## phase 7 line 2 solo go down 1/16x16
+(rest, 1)
+######## phase 8 line 2 solo go up 1/16x16
+(rest, 1)
+######## phase 9 line 2 solo go down 1/16x 16
+(rest, 1)
+
+LINEEND
+LINESTART
+######## phase 1
+(rest, 1)
+(ITER, 1, 4)
+######## phase 2
+(as3d4, 4)
+(ITER, 1, 4)
+(g3c4, 4)
+(g3c4, 4)
+(g3as3, 4)
+(g3as3, 4)
+######## phase 3
+(as3d4, 8)
+(g3, 8)
+(ITER, 2, 3)
+(as3d4, 8)
+(f3, 8)
+(g3c4, 8)
+(e3, 8)
+(ITER, 2, 2)
+(g3as3, 8)
+(ds3, 8)
+(ITER, 2, 2)
+######## phase 4
+(as3d4, 8)
+(g5, 16)
+(f5, 16)
+(as3d4, 8)
+(d5, 8)
+(as3d4, 8)
+(f5, 16)
+(g5, 16)
+(as3d4, 8)
+(d5, 8)
+(g3c4, 8)
+(f5, 16)
+(e5, 16)
+(g3c4, 8)
+(c5, 8)
+(g3as3, 8)
+(g5, 16)
+(ds5, 16)
+(g3as3, 8)
+(as5, 8)
+######## phase 5 same as phase 3
+(as3d4, 8)
+(g3, 8)
+(ITER, 2, 3)
+(as3d4, 8)
+(f3, 8)
+(g3c4, 8)
+(e3, 8)
+(ITER, 2, 2)
+(g3as3, 8)
+(ds3, 8)
+(ITER, 2, 2)
+######## phase 6 line 2 solo go up 1/16 x 16
+(g4, 16)
+(d4, 16)
+(as4, 16)
+(g4, 16)
+(d5, 16)
+(as4, 16)
+(g5, 16)
+(d5, 16)
+(as5, 16)
+(fs5, 16)
+(d6, 16)
+(as5, 16)
+(fs6, 16)
+(d6, 16)
+(as6, 16)
+(fs6, 16)
+######## phase 7 line 2 solo go down 1/16 x 16
+(f6, 16)
+(as5, 16)
+(d6, 16)
+(f5, 16)
+(as5, 16)
+(d5, 16)
+(f5, 16)
+(as4, 16)
+(c5, 16)
+(e4, 16)
+(g4, 16)
+(c4, 16)
+(e4, 16)
+(g3, 16)
+(c4, 16)
+(d4, 16)
+######## phase 8 line 2 solo go up
+(ds4, 16)
+(c4, 16)
+(g4, 16)
+(ds4, 16)
+(c5, 16)
+(g4, 16)
+(ds5, 16)
+(c5, 16)
+(g5, 16)
+(d5, 16)
+(as5, 16)
+(g5, 16)
+(d6, 16)
+(as5, 16)
+(g6, 16)
+(d6, 16)
+######## phase 9 line 2 solo go down
+(e6, 16)
+(a5, 16)
+(cs6, 16)
+(e5, 16)
+(a5, 16)
+(cs5, 16)
+(e5, 16)
+(a4, 16)
+(c5, 16)
+(e4, 16)
+(g4, 16)
+(c4, 16)
+(e4, 16)
+(g3, 16)
+(c4, 16)
+(e4, 16)
+######## phase 10 go up same as phase 6
+######## phase 11 go down same as phase 7
+######## phase 12 go up same as phase 8
+####### phase 13 go down same as phase 9
+(ITER, 64, 2)
+#######
+LINEEND
+END

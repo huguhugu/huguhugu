@@ -1,0 +1,22 @@
+START
+bpm: 126
+bar: 4/4
+LINESTART
+(chak, 8, 5)
+(ITER, 1, 32)
+LINEEND
+LINESTART
+(boom, 4, 5)
+(rest, 4, 5)
+(ITER, 2, 8)
+LINEEND
+LINESTART
+(rest, 4)
+(bamm, 4)
+(ITER, 2, 3)
+(rest, 8)
+(bamm, 8)
+(ITER, 1, 3)
+(ITER, 10, 2)
+LINEEND
+END

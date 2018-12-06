@@ -1,0 +1,25 @@
+g3 v
+c4 v
+d4 
+ds4
+e4
+g4
+a4
+as4
+c5 v
+cs5 v
+d5 v
+ds5 v
+e5 v
+f5 v
+fs5 v
+g5 v
+a5 v
+as5 v
+cs6
+d6
+e6
+f6
+fs6
+g6
+as6

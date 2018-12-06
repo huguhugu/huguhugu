@@ -53,6 +53,7 @@ where every line is list of notes.
 <Example - butterfly>
 START
 bpm: 126
+bar: 4/4
 LINESTART
 (chak, 8, 5)
 (ITER, 1, 32)

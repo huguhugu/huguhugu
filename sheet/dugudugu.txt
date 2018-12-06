@@ -1,0 +1,38 @@
+START
+bpm: 126
+bar: 4/4
+LINESTART
+(bamm, 16)
+(ITER, 1, 8)
+(boom, 16)
+(ITER, 1, 8)
+(chak, 16)
+(ITER, 1, 8)
+(cleartong1, 16)
+(ITER, 1, 8)
+(cleartong2, 16)
+(ITER, 1, 8)
+(hightong, 16)
+(ITER, 1, 8)
+(lowkung, 16)
+(ITER, 1, 8)
+(lowtuk, 16)
+(ITER, 1, 8)
+(midtong, 16)
+(ITER, 1, 8)
+(midtuk1, 16)
+(ITER, 1, 8)
+(midtuk2, 16)
+(ITER, 1, 8)
+(midtung, 16)
+(ITER, 1, 8)
+(highding, 16)
+(ITER, 1, 4)
+(lowding, 8)
+(ITER, 1, 2)
+(highding, 16)
+(ITER, 1, 4)
+(lowding, 8)
+(ITER, 1, 2)
+LINEEND
+END

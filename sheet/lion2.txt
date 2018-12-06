@@ -1,0 +1,176 @@
+The lion sleeps tonight
+START
+bpm: 120
+bar: 4/4
+###############################
+LINESTART
+#############
+BARSTART
+(rest, 1)
+BAREND
+BARSTART
+(rest, 1)
+BAREND
+BARSTART
+(rest, 1)
+BAREND
+BARSTART
+(rest, 1)
+BAREND
+##############
+BARSTART
+(f3, 4)
+(g3, 8)
+(a3, 4)
+(g3, 4)
+(a3, 8)
+BAREND
+#
+BARSTART
+(bf3, 4)
+(a3, 8)
+(g3, 4)
+(f3, 4)
+(g3, 8)
+BAREND
+#
+BARSTART
+(a3, 8)
+(c3, 4)
+(c3, 4)
+(c3, 8)
+(c3, 4)
+BAREND
+BARSTART
+(rest, 1)
+BAREND
+########
+BARSTART
+(c4, 4)
+(a3, 8)
+(g3, 4)
+(a3, 4)
+(c4, 8)
+BAREND
+#
+BARSTART
+(bf3, 4)
+(a3, 8)
+(g3, 4)
+(f3, 4)
+(g3, 8)
+BAREND
+#
+BARSTART
+(a3, 8)
+(c3, 4)
+(c3, 4)
+(c3, 8)
+(c3, 4)
+BAREND
+BARSTART
+(rest, 1)
+BAREND
+#########
+LINEEND
+#################################
+LINESTART
+############
+BARSTART
+(f2, 4)
+(a2, 4)
+(c2, 4)
+(MERGE, 0)
+(c2, 8)
+(c2, 8)
+BAREND
+#
+BARSTART
+(d2, 8)
+(MERGE, 0)
+(d2, 16)
+(d2, 16)
+(ITER, 2, 4)
+BAREND
+#
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+#######
+BARSTART
+(f2, 4)
+(a2, 4)
+(c2, 4)
+(MERGE, 0)
+(c2, 8)
+(c2, 8)
+BAREND
+#
+BARSTART
+(d2, 8)
+(MERGE, 0)
+(d2, 16)
+(d2, 16)
+(ITER, 2, 4)
+BAREND
+#
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+########
+BARSTART
+(f2, 4)
+(a2, 4)
+(c2, 4)
+(MERGE, 0)
+(c2, 8)
+(c2, 8)
+BAREND
+#
+BARSTART
+(d2, 8)
+(MERGE, 0)
+(d2, 16)
+(d2, 16)
+(ITER, 2, 4)
+BAREND
+#
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+BARSTART
+(e2, 8)
+(MERGE, 0)
+(e2, 16)
+(e2, 16)
+(ITER, 2, 4)
+BAREND
+#########
+LINEEND
+END

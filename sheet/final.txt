@@ -1,0 +1,76 @@
+START
+bpm: 126
+bar: 4/4
+LINESTART
+(lowkung, 4)
+(cleartong1, 4)
+(lowkung, 4)
+(cleartong2, 4)
+(lowkung, 4)
+(cleartong1, 4)
+(rest, 8)
+(lowkung, 8)
+(cleartong2, 8)
+(cleartong2, 8)
+(ITER, 10, 4)
+LINEEND
+#############################################################################################################
+LINESTART
+(rest, 1)
+(rest, 1)
+(triangle, 2)
+(MERGE, 0)
+(triangle, 4)
+(rest, 8)
+(triangle, 8)
+(triangle, 1)
+(ITER, 4, 3)
+LINEEND
+#############################################################################################################
+LINESTART
+################
+(rest, 1)
+(ITER, 1, 8)
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(boom, 8)
+###############
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(bamm, 8)
+###############
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(chak, 8)
+###############
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(flowerpot, 16)
+(flowerpot, 8)
+(flowerpot, 8)
+(triangle, 8)
+###############
+LINEEND
+#############################################################################################################
+END
