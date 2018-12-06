@@ -1,11 +1,22 @@
+as2
 g3 v
 c4 v
+as3ds4
 d4 
 ds4
 e4
 g4
 a4
 as4
+d4f4f5
+d4f4as5
+e4a4e5
+c4e4c5
+e4g4
+c4f4
+g2d3
+g2ds3
+g2e3
 c5 v
 cs5 v
 d5 v
