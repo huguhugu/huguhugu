@@ -32,7 +32,105 @@ LINESTART
 (rest, 1)
 ######## phase 9 line 2 solo go down 1/16x 16
 (rest, 1)
-
+######## phase 10 반주 시작
+(g2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(ITER, 4, 2)
+(fs2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(ITER, 4, 2)
+######## phase 11
+(f2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(as2, 16)
+(rest, 16)
+(d2, 16)
+(rest, 16)
+(e2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(c2, 16)
+(rest, 16)
+(ITER, 1, 3)
+####### phase 12
+(ds2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(ITER, 4, 2)
+(d2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(ITER, 4, 2)
+######## phase 13
+(cs2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(e2, 16)
+(rest, 16)
+(a1, 16)
+(rest, 16)
+(c2, 16)
+(rest, 16)
+(ITER, 1, 3)
+(ITER, 4, 2)
+######## phase 14 same as 10
+######## phase 15 same as 11
+######## phase 16 same as 12
+######## phase 17 same as 13
+(ITER, 64, 2)
+######## phase 18
+(g2, 8)
+(ITER, 1, 4)
+(fs2, 8)
+(ITER, 1, 4)
+####### phase 19
+(f2, 8)
+(ITER, 1, 4)
+(e2, 8)
+(ITER, 1, 4)
+###### phase 20
+(ds2, 8)
+(ITER, 1, 4)
+(d2, 8)
+(ITER, 1, 4)
+###### phase 21
+(cs2, 8)
+(ITER, 1, 4)
+(c2, 8)
+(c2, 8)
+(e2, 8)
+(f2, 8)
+####### phase 22 same as phase 2 half
+(g2, 8)
+(ITER, 1, 4)
+(f2, 8)
+(ITER, 1, 4)
+###### phase 23 same as phase 2 half
+(e2, 8)
+(ITER, 1, 4)
+(ds2, 8)
+(ITER, 1, 4)
+####### phase 24 almost done
+(rest, 8)
+(as1, 8)
+(rest, 8)
+(c2, 8)
+(ITER, 4, 2)
+####### phase 25 almost done
+(rest, 8)
+(g1, 8)
+(ITER, 2, 3)
+(rest, 8)
+(rest, 8)
+####### phase 26 end
+(g1, 1)
+####### phase 27 rest
+(rest, 1)
+####### phase 28 rest
+(rest, 1)
 LINEEND
 ############################################################
 LINESTART
@@ -328,6 +426,8 @@ LINESTART
 ####### phase 26 end
 (rest, 1)
 ####### phase 27 rest
+(rest, 1)
+###### phase 28 rest
 (rest, 1)
 LINEEND
 ########################################################
