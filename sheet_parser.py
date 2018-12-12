@@ -39,7 +39,7 @@ class Parser:
             'gf': 'fs'
         }
         self.min_octave = 1
-        self.max_octave = 5
+        self.max_octave = 7
         self.DEFAULT_VOLUME = 5
         
 

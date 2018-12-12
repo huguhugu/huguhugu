@@ -1,0 +1,26 @@
+START
+bpm: 120
+bar: 4/4
+LINESTART
+(pikaboo1, 4)
+(rest, 4)
+(pikaboo1, 4)
+(rest, 4)
+(pikaboo1, 8)
+(ITER, 1, 4)
+(ITER, 1, 4)
+(pikaboo1, 16)
+(ITER, 1, 8)
+(ITER, 1, 8)
+LINEEND
+LINESTART
+(rest, 4)
+(pikaboo2, 4)
+(rest, 4)
+(pikaboo2, 4)
+(ITER, 2, 2)
+(ITER, 2, 2)
+(ITER, 2, 2)
+(ITER, 2, 2)
+LINEEND
+END

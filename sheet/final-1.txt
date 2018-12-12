@@ -8,7 +8,7 @@ LINESTART
 (ITER, 1, 12)
 (fs2, 8)
 (ITER, 1, 4)
-######## phase 2
+######## phase 2 1/8 x 16
 (g2, 8)
 (ITER, 1, 4)
 (f2, 8)
@@ -17,6 +17,7 @@ LINESTART
 (ITER, 1, 4)
 (ds2, 8)
 (ITER, 1, 4)
+######## phase 2 1/8 x 16
 (ITER, 16, 2)
 ######## phase 3
 (ITER, 16, 2)
@@ -134,7 +135,7 @@ LINESTART
 LINEEND
 ############################################################
 LINESTART
-######## phase 1
+######## phase 1 + 2
 (rest, 1)
 (ITER, 1, 4)
 ######## phase 2
@@ -424,7 +425,7 @@ LINESTART
 (g2, 8)
 (as2, 8)
 ####### phase 26 end
-(rest, 1)
+(g1, 1)
 ####### phase 27 rest
 (rest, 1)
 ###### phase 28 rest
